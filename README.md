@@ -83,21 +83,21 @@ Session:  claude
 ✓ Started "claude"
 
 Connection Info:
-  Host:     100.64.183.85
+  Host:     xxx.xxx.xxx.xxx
   Port:     22
-  User:     yourname
+  User:     username
   Session:  claude
 
-  ✓ Tailscale detected: 100.64.183.85
+  ✓ Tailscale detected: xxx.xxx.xxx.xxx
 
 Scan with RemOrch app:
 
   ✓ QR code opened: /tmp/remorch-qr-claude.png
 
-Or enter code: E748-D8D2
+Or enter code: XXXX-XXXX
 
 Or open on your phone:
-  https://koshikawa-masato.github.io/remorch-web/#eyJ2IjoxLC...
+  https://koshikawa-masato.github.io/remorch-web/#...
 
 Attaching to session...
 (Press Ctrl+B, then D to detach)
