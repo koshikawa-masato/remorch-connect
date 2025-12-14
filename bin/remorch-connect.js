@@ -231,8 +231,7 @@ async function showConnectionInfo(sessionName = null) {
   console.log('');
 
   // Web URL for environments without GUI
-  // TODO: Change to https://remorch.dev/ once domain is verified
-  const webUrl = `https://koshikawa-masato.github.io/remorch-web/#${encoded}`;
+  const webUrl = `https://remorch.dev/#${encoded}`;
 
   const qrPath = await generateQRImage(remOrchUrl, sessionName);
   if (qrPath) {
