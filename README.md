@@ -1,74 +1,74 @@
 # remorch-connect
 
-AI CLI (Claude Code, Gemini CLI, Codex CLI) をリモートからモニタリング・操作するための接続ツール。
+AI CLI（Claude Code, Gemini CLI, Codex CLI）をリモートからモニタリング・操作するための接続ツール。
 
 tmuxセッション内でAI CLIを起動し、QRコードで接続情報を表示。外出先からスマホで監視・操作できます。
 
-## Install
+## インストール
 
 ```bash
 npm install -g remorch-connect
 ```
 
-Or use directly with npx:
+npxで直接実行も可能：
 
 ```bash
 npx remorch-connect
 ```
 
-## Quick Start
+## クイックスタート
 
-### 1. Setup aliases (recommended)
+### 1. エイリアス設定（推奨）
 
 ```bash
 npx remorch-connect --setup
-source ~/.zshrc  # or ~/.bashrc
+source ~/.zshrc  # または ~/.bashrc
 ```
 
-This adds aliases: `claude`, `gemini`, `codex`, `remorch`
+`claude`, `gemini`, `codex`, `remorch` エイリアスが追加されます。
 
-### 2. Start AI CLI
+### 2. AI CLIを起動
 
 ```bash
-claude  # instead of raw 'claude' command
+claude  # 通常の claude コマンドの代わりに
 ```
 
-This will:
-1. Create a tmux session named "claude"
-2. Start Claude Code inside it
-3. Display QR code for remote connection
-4. Attach to the session
+実行すると：
+1. "claude" という名前のtmuxセッションを作成
+2. その中でClaude Codeを起動
+3. リモート接続用のQRコードを表示
+4. セッションにアタッチ
 
-## Usage
+## 使い方
 
 ```bash
-# Show connection info only
+# 接続情報のみ表示
 remorch-connect
 
-# Start CLI in tmux + show QR
+# tmuxでCLIを起動 + QR表示
 remorch-connect claude
 remorch-connect gemini
 remorch-connect codex
 
-# Start without attaching (background)
+# バックグラウンドで起動（アタッチしない）
 remorch-connect claude --no-attach
 
-# Setup shell aliases
+# シェルエイリアスを設定
 remorch-connect --setup
 
-# Help
+# ヘルプ
 remorch-connect --help
 ```
 
-## Features
+## 機能
 
-- **Auto tmux session**: Creates tmux session automatically
-- **QR code connection**: Scan with RemOrch app to connect
-- **Tailscale detection**: Prefers Tailscale IP for remote access
-- **Shell alias setup**: One command to configure `claude`, `gemini`, `codex` aliases
-- **Cross-platform**: macOS, Linux, WSL supported
+- **tmux自動セッション**: tmuxセッションを自動作成
+- **QRコード接続**: RemOrchアプリでスキャンして接続（`remorch://`スキーム対応）
+- **Tailscale検出**: TailscaleのIPを自動検出・優先使用
+- **シェルエイリアス設定**: `claude`, `gemini`, `codex` を一発で設定
+- **クロスプラットフォーム**: macOS, Linux, WSL対応
 
-## Output Example
+## 出力例
 
 ```
 ┌─────────────────────────────────────────┐
@@ -92,34 +92,35 @@ Connection Info:
 
 Scan with RemOrch app:
 
-█▀▀▀▀▀█ ▄▄▄▄▄ █▀▀▀▀▀█
-█ ███ █ █▄▄▄█ █ ███ █
-...
+  ✓ QR code opened: /tmp/remorch-qr-claude.png
 
 Or enter code: E748-D8D2
+
+Or open on your phone:
+  https://koshikawa-masato.github.io/remorch-web/#eyJ2IjoxLC...
 
 Attaching to session...
 (Press Ctrl+B, then D to detach)
 ```
 
-## Requirements
+## 必要環境
 
-- Node.js 18+
+- Node.js 18以上
 - tmux
-- SSH server (for remote access)
-- Tailscale (recommended for easy remote access)
+- SSHサーバー（リモートアクセス用）
+- Tailscale（推奨・簡単にリモートアクセス可能）
 
-## How It Works
+## 仕組み
 
 ```
 ┌─────────────────┐
-│  Your Phone     │
+│  スマートフォン   │
 │  (RemOrch App)  │
 └────────┬────────┘
-         │ SSH (via Tailscale)
+         │ SSH (Tailscale経由)
          ▼
 ┌─────────────────┐
-│  Your PC / VPS  │
+│  PC / VPS       │
 │  ┌───────────┐  │
 │  │   tmux    │  │
 │  │ ┌───────┐ │  │
@@ -129,26 +130,25 @@ Attaching to session...
 └─────────────────┘
 ```
 
-1. `remorch-connect claude` starts Claude Code in a tmux session
-2. QR code contains SSH connection info (host, user, port, session)
-3. RemOrch app scans QR → SSH connects → attaches to tmux session
-4. You can monitor and send commands from your phone
+1. `remorch-connect claude` でClaude Codeをtmuxセッション内で起動
+2. QRコードにSSH接続情報を含む（ホスト, ユーザー, ポート, セッション名）
+3. RemOrchアプリでQRスキャン → SSH接続 → tmuxセッションにアタッチ
+4. スマホからモニタリング・コマンド送信
 
-## Supported Shells
+## 対応シェル
 
-| Platform | Shell | Config File |
-|----------|-------|-------------|
+| プラットフォーム | シェル | 設定ファイル |
+|-----------------|--------|-------------|
 | macOS | zsh | `~/.zshrc` |
 | macOS | bash | `~/.bash_profile` |
 | Linux | bash | `~/.bashrc` |
 | WSL | bash | `~/.bashrc` |
-| Any | fish | `~/.config/fish/config.fish` |
+| 全OS | fish | `~/.config/fish/config.fish` |
 
-## Related
+## 関連
 
-- [RemOrch](https://github.com/yourname/remorch) - Mobile app for remote AI CLI monitoring
-- [RemOrch-webapp](https://github.com/yourname/remorch-webapp) - Web-based PoC
+- [remorch-web](https://github.com/koshikawa-masato/remorch-web) - QRコード表示用Webページ
 
-## License
+## ライセンス
 
 MIT
