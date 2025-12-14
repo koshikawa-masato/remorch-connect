@@ -1,0 +1,42 @@
+{
+  "name": "remorch-connect",
+  "version": "0.1.0",
+  "description": "Start AI CLI (Claude Code, Gemini, Codex) in tmux with QR code for remote access",
+  "bin": {
+    "remorch-connect": "./bin/remorch-connect.js"
+  },
+  "scripts": {
+    "start": "node bin/remorch-connect.js"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "keywords": [
+    "remorch",
+    "claude",
+    "claude-code",
+    "gemini",
+    "codex",
+    "ai-cli",
+    "tmux",
+    "ssh",
+    "remote",
+    "qrcode",
+    "tailscale"
+  ],
+  "author": "Koshikawa Masato",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koshikawa/remorch-connect"
+  },
+  "homepage": "https://github.com/koshikawa/remorch-connect#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ]
+}
